@@ -1,0 +1,47 @@
+# ------------------------------
+# Python virtual environment
+# ------------------------------
+.venv/
+
+# ------------------------------
+# Python bytecode & cache
+# ------------------------------
+__pycache__/
+*.py[cod]
+*$py.class
+
+# ------------------------------
+# OS-generated files
+# ------------------------------
+.DS_Store
+Thumbs.db
+
+# ------------------------------
+# Logs, backups and temp files
+# ------------------------------
+*.log
+*.bak
+*.tmp
+
+# ------------------------------
+# Editor and IDE settings
+# ------------------------------
+.idea/
+.vscode/
+
+# ------------------------------
+# Environment variables
+# ------------------------------
+.env
+
+# ------------------------------
+# Build and packaging artifacts
+# ------------------------------
+*.egg-info/
+dist/
+build/
+
+# ------------------------------
+# Matplotlib generated files (if any)
+# ------------------------------
+__results__.html

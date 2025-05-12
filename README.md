@@ -18,6 +18,8 @@ Data & Artificial Intelligence Engineer
 
 - [Introduction](#introduction)
 - [Key Features](#key-features)
+- [Interface Overview](#interface-overview)
+- [Refactor Overview](#refactor-overview)
 - [Project Structure](#project-structure)
 - [Script Overview](#script-overview)
 - [Utilities](#utilities)
@@ -56,6 +58,24 @@ The project serves both as a pedagogical tool for neural network understanding a
 - Timestamped training reports to preserve session history and avoid overwrites
 - Dynamic GUI with improved layout and fullscreen support
 
+---
+
+
+## Interface Overview
+
+Below are sample views of the application's interface and output visualizations:
+
+| Initial Overview                                        |
+|---------------------------------------------------------|
+| <img src="images/readme_start_window.png" width="900"/> |
+
+| Training Type Selection                                         |
+|-----------------------------------------------------------------|
+| <img src="images/readme_training_type_window.png" width="900"/> |
+
+| Example Shot Map Output                             |
+|-----------------------------------------------------|
+| <img src="images/readme_shot_map.png" width="900"/> |
 ---
 
 ## Refactor Overview

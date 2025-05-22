@@ -65,17 +65,17 @@ The project serves both as a pedagogical tool for neural network understanding a
 
 Below are sample views of the application's interface and output visualizations:
 
-| Initial Overview                                        |
-|---------------------------------------------------------|
-| <img src="images/readme_start_window.png" width="900"/> |
+| Initial Overview                                          |
+|-----------------------------------------------------------|
+| <img src="images/markdown_start_window.png" width="900"/> |
 
-| Training Type Selection                                         |
-|-----------------------------------------------------------------|
-| <img src="images/readme_training_type_window.png" width="900"/> |
+| Training Type Selection                                           |
+|-------------------------------------------------------------------|
+| <img src="images/markdown_training_type_window.png" width="900"/> |
 
-| Example Shot Map Output                             |
-|-----------------------------------------------------|
-| <img src="images/readme_shot_map.png" width="900"/> |
+| Example Shot Map Output                               |
+|-------------------------------------------------------|
+| <img src="images/markdown_shot_map.png" width="900"/> |
 ---
 
 ## Refactor Overview

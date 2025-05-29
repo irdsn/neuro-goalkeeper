@@ -15,15 +15,22 @@
 import os
 
 ##################################################################################################
-#                                   RESOURCE PATH RESOLVER                                       #
-#                                                                                                #
-# Returns the absolute path to a resource file relative to the project root.                     #
-# This allows safe and consistent access to resources regardless of where the script is run.     #
-#                                                                                                #
-# :param relative_path: str → relative path like "datasets/data.csv"                             #
-# :return: str → absolute path to be used in file operations                                     #
+#                                        IMPLEMENTATION                                          #
 ##################################################################################################
 
 def resource_path(relative_path):
+    """
+    Resolve the absolute path to a resource file based on the project root.
+
+    This function ensures compatibility when running the application from different locations
+    by returning a consistent and safe absolute path to internal resources.
+
+    Args:
+        relative_path (str): Relative path to the file (e.g., "datasets/data.csv").
+
+    Returns:
+        str: Absolute file path pointing to the requested resource.
+    """
+
     base_path = os.path.dirname(os.path.dirname(__file__))
     return os.path.join(base_path, relative_path)

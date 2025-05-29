@@ -26,10 +26,20 @@ import csv
 import copy
 
 ##################################################################################################
-#                                       DATASET LOADING UTILS                                    #
+#                                        IMPLEMENTATION                                          #
 ##################################################################################################
 
 def load_csv(filename):
+    """
+    Load a CSV file and return its contents as a list of rows.
+
+    Args:
+        filename (str): Path to the CSV file to be loaded.
+
+    Returns:
+        list[list[str]]: Nested list containing all non-empty rows from the CSV file.
+    """
+
     dataset = []
     try:
         with open(filename, newline='') as archivo:
@@ -44,10 +54,31 @@ def load_csv(filename):
 
 
 def str_column_to_float(dataset, column):
+    """
+    Convert a string column in the dataset to floats in-place.
+
+    Args:
+        dataset (list[list[str]]): Dataset in which the column values will be converted.
+        column (int): Index of the column to convert.
+    """
+
     for row in dataset:
         row[column]=float(row[column].strip())
 
 def str_column_to_int(dataset, column):
+    """
+    Convert a string column in the dataset to integer class labels.
+
+    Useful for converting categorical output labels to numerical values.
+
+    Args:
+        dataset (list[list[str]]): Dataset in which the column values will be converted.
+        column (int): Index of the column to convert.
+
+    Returns:
+        dict: Mapping from original string values to assigned integer labels.
+    """
+
     class_values = [row[column] for row in dataset]
     unique = set(class_values)
     lookup = dict()
@@ -58,8 +89,20 @@ def str_column_to_int(dataset, column):
         #print(row)
     return lookup
 
-# Find the min and max values for each column
 def dataset_minmax(dataset, opf):
+    """
+    Compute the min and max values for each column in the dataset.
+
+    Also logs the result to the provided output file.
+
+    Args:
+        dataset (list[list[float]]): The dataset to analyze.
+        opf (file object): Open file object for logging min/max values.
+
+    Returns:
+        list[list[float]]: A list of [min, max] pairs for each column.
+    """
+
     stats = [[min(column), max(column)] for column in zip(*dataset)]
     
     opf.write('Min and Max values for each input feature:\n')
@@ -68,8 +111,17 @@ def dataset_minmax(dataset, opf):
 
     return stats
  
-# Rescale dataset columns to the range 0-1
 def normalize_dataset(dataset, minmax):
+    """
+    Normalize dataset features to the range [0, 1].
+
+    Applies min-max scaling to all columns except the last one (assumed to be the target).
+
+    Args:
+        dataset (list[list[float]]): Dataset to normalize.
+        minmax (list[list[float]]): List of [min, max] values for each column.
+    """
+
     for row in dataset:
         for i in range(len(row)-1):
             row[i] = (row[i] - minmax[i][0]) / (minmax[i][1] - minmax[i][0])  

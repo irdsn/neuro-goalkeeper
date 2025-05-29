@@ -1,6 +1,8 @@
 # NeuroGoalkeeper: ANN-Based Training Simulator for Handball Goalkeepers
 
 ![Python](https://img.shields.io/badge/Python-3.11-blue.svg)
+![Task](https://img.shields.io/badge/Task-Binary_Classification-orange)
+![Model](https://img.shields.io/badge/Model-Feedforward_ANN-blueviolet)
 ![Last Updated](https://img.shields.io/badge/Last%20Updated-May%202025-brightgreen)
 
 Simulated training environment for handball goalkeepers powered by a custom-built artificial neural network and an interactive Tkinter GUI. Originally developed as a bachelor thesis and later refined into a standalone application.
@@ -22,7 +24,6 @@ Data & Artificial Intelligence Engineer
 - [Refactor Overview](#refactor-overview)
 - [Project Structure](#project-structure)
 - [Script Overview](#script-overview)
-- [Utilities](#utilities)
 - [Installation](#installation)
 - [Usage](#usage)
 - [Important Notes](#important-notes)
@@ -82,15 +83,15 @@ Below are sample views of the application's interface and output visualizations:
 
 This project is an extended and cleaned-up version of the original Bachelor's Thesis implementation. Key improvements include:
 
-| Area                | Original (TFG)                                 | Current Version                                     |
-|---------------------|-----------------------------------------------|-----------------------------------------------------|
-| Interface Language  | Mixed (Spanish + English)                     | Fully in English                                    |
-| Code Structure      | Monolithic, low modularity                    | Modular design with separate folders per component  |
-| ANN Logic           | Embedded in single script                     | Isolated in its own module with improved logging    |
-| Output Format       | Plain `.txt` log only                         | `.txt` + auto-generated `.md` report                |
-| Custom Training     | Present but visually inconsistent             | Fully refactored with dynamic button layout         |
-| Dataset Handling    | Fixed logic, hardcoded paths                  | Robust path handling via `utils/paths.py`           |
-| UI Design           | Fixed window sizes, limited responsiveness    | Fullscreen support, consistent layout across screens|
+| Area                 | Original (TFG)                                | Current Version                                       |
+|----------------------|-----------------------------------------------|-------------------------------------------------------|
+| Interface Language   | Mixed (Spanish + English)                     | Fully in English                                      |
+| Code Structure       | Monolithic, low modularity                    | Modular design with separate folders per component    |
+| ANN Logic            | Embedded in single script                     | Isolated in its own module with improved logging      |
+| Output Format        | Plain `.txt` log only                         | `.txt` + auto-generated `.md` report                  |
+| Custom Training      | Present but visually inconsistent             | Fully refactored with dynamic button layout           |
+| Dataset Handling     | Fixed logic, hardcoded paths                  | Robust path handling via `utils/paths.py`             |
+| UI Design            | Fixed window sizes, limited responsiveness    | Fullscreen support, consistent layout across screens  |
 
 These changes improve usability, maintainability, and adaptability for future enhancements.
 
@@ -100,41 +101,64 @@ These changes improve usability, maintainability, and adaptability for future en
 
 ```bash
 NeuroGoalkeeper/
-├── ann/ # ANN logic and training process
-├── gui/ # Tkinter-based GUI windows
-├── utils/ # Utility functions (paths, file helpers)
-├── datasets/ # CSV datasets for training
-├── images/ # Static visual assets (goal, icons)
-├── outputs/ # Training output logs and reports
-├── app.py # Main application launcher
-├── requirements.txt # Python dependencies
-├── .gitignore # Ignored files and folders
-└── README.md # Project documentation
+├── ann/                                         # ANN logic and training process (forward/backward propagation, training loop)
+│   └── neural_network.py
+│
+├── datasets/                                    # CSV datasets used as input for training
+│   ├── dataset_external.csv
+│   └── dataset_general.csv
+│
+├── gui/                                         # Tkinter-based GUI modules for all application screens
+│   ├── custom_training_window.py
+│   ├── dataset_view_window.py
+│   ├── error_term_window.py
+│   ├── parameter_selection_window.py
+│   ├── predictions_window.py
+│   ├── results_window.py
+│   ├── start_window.py
+│   ├── stats_window.py
+│   └── training_type_window.py
+│
+├── images/                                      # Static visual assets
+│   ├── goal_axes.png                            # Goal interface for custom training
+│   ├── ann_structure.GIF                        # Architecture diagram shown in start window
+│   ├── markdown_start_window.png                # Used in README.md to document UI
+│   ├── markdown_training_type_window.png
+│   └── markdown_shot_map.png
+│
+├── outputs/                                     # Training session results and exported artifacts
+│   ├── training_summary.txt                     # Full ANN output from last session
+│   ├── training_report_YYYYMMDD_HHMMSS.md       # Markdown training report (auto-generated)
+│   ├── Error_Term_Evolution_YYYYMMDD_HHMMSS.png # Error plot (auto-generated)
+│   └── Shot_Map_YYYYMMDD_HHMMSS.png             # Shot coordinates visualization (auto-generated)
+│
+├── utils/                                       # Utility modules used throughout the app
+│   └── paths.py                                 # Path resolution utilities
+│
+├── app.py                                       # Main application launcher
+├── requirements.txt                             # Python dependencies
+├── .gitignore                                   # Ignored files and folders
+└── README.md                                    # Project documentation
 ```
 
 ---
 
 ## Script Overview
 
-| File                              | Description                                                                 |
-|-----------------------------------|-----------------------------------------------------------------------------|
-| `app.py`                          | Main launcher of the application; handles window transitions and fullscreen behavior |
-| `ann/neural_network.py`           | Full implementation of the artificial neural network and training logic     |
-| `gui/custom_training_window.py`   | Interactive shot generation interface using goal layout                     |
-| `gui/dataset_view_window.py`      | Displays selected dataset before training                                   |
-| `gui/error_term_window.py`        | Graph of error term evolution during training                               |
-| `gui/parameter_selection_window.py` | Collects ANN hyperparameters from the user                               |
-| `gui/predictions_window.py`       | Lists ANN predictions with input and output values                          |
-| `gui/results_window.py`           | Shows training log, predictions, and access to graphs                       |
-| `gui/start_window.py`             | Initial project description screen and ANN summary                          |
-| `gui/stats_window.py`             | Final performance metrics                                                   |
-| `gui/training_type_window.py`     | Mode selection window (general, external, custom)                           |
-
----
-
-## Utilities
-
-- `utils/paths.py` – Provides project-root-relative file resolution to reliably load datasets and images from any script or module.
+| File                                | Description                                                                                                    |
+|-------------------------------------|----------------------------------------------------------------------------------------------------------------|
+| `app.py`                            | Main launcher of the application; handles window transitions and fullscreen behavior                           |
+| `ann/neural_network.py`             | Full implementation of the artificial neural network and training logic                                        |
+| `gui/custom_training_window.py`     | Interactive shot generation interface using goal layout                                                        |
+| `gui/dataset_view_window.py`        | Displays selected dataset before training                                                                      |
+| `gui/error_term_window.py`          | Graph of error term evolution during training                                                                  |
+| `gui/parameter_selection_window.py` | Collects ANN hyperparameters from the user                                                                     |
+| `gui/predictions_window.py`         | Lists ANN predictions with input and output values                                                             |
+| `gui/results_window.py`             | Shows training log, predictions, and access to graphs                                                          |
+| `gui/start_window.py`               | Initial project description screen and ANN summary                                                             |
+| `gui/stats_window.py`               | Final performance metrics                                                                                      |
+| `gui/training_type_window.py`       | Mode selection window (general, external, custom)                                                              |
+| `utils/paths.py`                    | Provides project-root-relative file resolution to reliably load datasets and images from any script or module. |
 
 ---
 

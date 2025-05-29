@@ -14,13 +14,22 @@ from tkinter import Label, Listbox, Scrollbar, Button, RIGHT, BOTH, Y
 from gui.parameter_selection_window import ParameterSelectionWindow
 
 ##################################################################################################
-#                                  DATASET VIEW WINDOW CLASS                                     #
-#                                                                                                #
-# Visualizes the training dataset in a scrollable list format.                                   #
-# Provides a "Continue" button to proceed to ANN parameter selection.                            #
+#                                        IMPLEMENTATION                                          #
 ##################################################################################################
 
 class DatasetViewWindow(tk.Frame):
+    """
+    A GUI window that displays the input dataset before neural network training.
+
+    This window renders each training pattern in a scrollable list and shows
+    the data structure format. It allows users to proceed to the ANN parameter
+    selection window once they have reviewed the dataset.
+
+    Attributes:
+        controller (tk.Tk): Reference to the main app controller for window navigation.
+        dataset (list): List of training patterns to display.
+        dataset_path (str): Optional path or label indicating the dataset origin.
+    """
 
     def __init__(self, parent, controller, dataset=None, dataset_path=None):
         super().__init__(parent)
@@ -57,6 +66,10 @@ class DatasetViewWindow(tk.Frame):
 
     def proceed_to_parameters(self):
         """
-        Proceed to the ANN parameter input screen.
+        Navigates to the ANN parameter selection window.
+
+        Transfers the current dataset and dataset path to the next screen for
+        training configuration.
         """
+
         self.controller.show_frame(ParameterSelectionWindow, dataset=self.dataset, dataset_path=self.dataset_path)

@@ -17,13 +17,21 @@ from gui.dataset_view_window import DatasetViewWindow
 from utils.paths import resource_path
 
 ##################################################################################################
-#                                  CUSTOM TRAINING WINDOW CLASS                                  #
-#                                                                                                #
-# Displays a goal image and lets the user simulate shots in specific zones.                      #
-# Generated patterns include: distance, speed, (x, y), and expected outcome.                     #
+#                                        IMPLEMENTATION                                          #
 ##################################################################################################
 
 class CustomTrainingWindow(tk.Frame):
+    """
+    A custom training interface for simulating goalkeeper shots by clicking on goal zones.
+
+    This Tkinter-based GUI allows the user to generate training data by selecting target zones
+    on a football goal image. Each shot generates randomized input features including distance,
+    speed, (x, y) position, and expected outcome.
+
+    Attributes:
+        dataset (list): List of generated shot patterns.
+        controller (object): Reference to the main app controller for screen transitions.
+    """
 
     def __init__(self, parent, controller):
         super().__init__(parent)
@@ -90,7 +98,13 @@ class CustomTrainingWindow(tk.Frame):
             btn.place(x=0, y=0)  # Temporarily
 
     def redraw(self, event):
-        """ Redraw image and reposition buttons. """
+        """
+        Redraws the background image and repositions the buttons when the window is resized.
+
+        Args:
+            event (tkinter.Event): Resize event triggered by the canvas.
+        """
+
         # Reserve margins for top and bottom space
         margin_top_ratio = 0.08
         margin_bottom_ratio = 0.12
@@ -111,8 +125,12 @@ class CustomTrainingWindow(tk.Frame):
 
     def add_shot(self, zone):
         """
-        Simulates a shot to a specific goal zone, generating a realistic pattern.
+        Simulates a shot to a specific goal zone and adds the pattern to the dataset.
+
+        Args:
+            zone (str): The label of the goal zone clicked by the user.
         """
+
         x_range, y_range = self.get_zone_coordinates(zone)
 
         distance = round(random.uniform(6.90, 10.50), 2)
@@ -129,8 +147,18 @@ class CustomTrainingWindow(tk.Frame):
 
     def get_zone_coordinates(self, zone):
         """
-        Returns the (x_range, y_range) of the goal zone to randomize shot position.
+        Returns coordinate ranges for the clicked goal zone.
+
+        These ranges are used to randomize the x and y coordinates of the shot within
+        the specific region of the goal image.
+
+        Args:
+            zone (str): The label of the selected goal zone.
+
+        Returns:
+            tuple: Two tuples representing (x_min, x_max) and (y_min, y_max).
         """
+
         if zone == "TOP LEFT":
             return (0.00, 1.05), (1.39, 2.08)
         elif zone == "TOP CENTER":
@@ -152,10 +180,12 @@ class CustomTrainingWindow(tk.Frame):
 
     def continue_to_dataset(self):
         """
-        Proceed to the dataset view if enough shots have been created.
+        Transitions to the dataset view if at least two shots have been created.
+
+        Validates dataset length before proceeding. Shows an error message if not enough shots exist.
         """
+
         if len(self.dataset) < 2:
             messagebox.showerror("ERROR", "Please shoot at least twice before continuing.")
         else:
             self.controller.show_frame(DatasetViewWindow, dataset=self.dataset, dataset_path="custom_generated")
-

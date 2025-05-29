@@ -17,13 +17,25 @@ from tkinter import Label, Entry, Button, StringVar, messagebox
 from gui.results_window import ResultsWindow
 
 ##################################################################################################
-#                               PARAMETER SELECTION WINDOW CLASS                                 #
-#                                                                                                #
-# Captures training parameters from user input.                                                  #
-# Validates inputs before launching ANN training and showing results.                            #
+#                                        IMPLEMENTATION                                          #
 ##################################################################################################
 
 class ParameterSelectionWindow(tk.Frame):
+    """
+    GUI window for configuring the training parameters of the artificial neural network (ANN).
+
+    This window allows the user to specify:
+    - Number of neurons in the hidden layer
+    - Learning rate
+    - Number of training epochs
+
+    It also displays fixed input/output neuron information based on dataset characteristics.
+
+    Attributes:
+        controller (tk.Tk): Main application controller for screen transitions.
+        dataset (list): List of input patterns to be used for training.
+        dataset_path (str): Optional path to the dataset source.
+    """
 
     def __init__(self, parent, controller, dataset, dataset_path=None):
         super().__init__(parent)
@@ -109,8 +121,17 @@ class ParameterSelectionWindow(tk.Frame):
 
     def validate_and_start(self):
         """
-        Validate input parameters and transition to the results screen.
+        Validate user-provided ANN parameters and launch the training results screen.
+
+        Validates that:
+        - Hidden layer neurons is a positive integer
+        - Learning rate is a float between 0 and 1
+        - Epochs is a positive integer
+
+        On success, navigates to the ResultsWindow with the collected parameters and dataset.
+        On error, shows an error message prompting the user to correct the inputs.
         """
+
         try:
             if not self.entry_hidden.get() or not self.entry_rate.get() or not self.entry_epochs.get():
                 raise ValueError("Missing fields.")

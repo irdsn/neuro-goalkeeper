@@ -14,12 +14,21 @@ from tkinter import Label, Listbox, Scrollbar, Button, RIGHT, Y, BOTH, LEFT, END
 from gui.stats_window import StatsWindow
 
 ##################################################################################################
-#                                 PREDICTIONS WINDOW CLASS                                       #
-#                                                                                                #
-# Handles display of ANN predictions from the output file and links to final statistics.         #
+#                                        IMPLEMENTATION                                          #
 ##################################################################################################
 
 class PredictionsWindow(tk.Frame):
+    """
+    GUI window for displaying the predictions made by the trained ANN.
+
+    Shows the prediction results in a scrollable list and provides access to
+    final prediction statistics.
+
+    Attributes:
+        controller (tk.Tk): The main application controller for screen transitions.
+        predictions (list): List of strings representing prediction outcomes.
+        stats (dict): Dictionary containing computed statistics for the predictions.
+    """
 
     def __init__(self, parent, controller, predictions, stats, **kwargs):
         super().__init__(parent)

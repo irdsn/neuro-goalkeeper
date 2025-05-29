@@ -1,5 +1,5 @@
 ##################################################################################################
-#                                      START WINDOW (SCREEN 1)                                   #
+#                                          START WINDOW                                          #
 #                                                                                                #
 # Initial welcome screen for the NeuroGoalkeeper application.                                    #
 # Displays project and author information and provides access to training modes.                 #
@@ -15,12 +15,21 @@ from gui.training_type_window import TrainingTypeWindow
 from utils.paths import resource_path
 
 ##################################################################################################
-#                                        START WINDOW CLASS                                      #
-#                                                                                                #
-# Displays the welcome screen with project credits and a button to start training.               #
+#                                        IMPLEMENTATION                                          #
 ##################################################################################################
 
 class StartWindow(tk.Frame):
+    """
+    Initial screen for the NeuroGoalkeeper application.
+
+    Displays general project information, author credits, and a summary of the system’s purpose.
+    Also includes a graphical representation of the neural network structure and a button
+    to launch the training configuration process.
+
+    Attributes:
+        controller (tk.Tk): Application controller for managing screen transitions.
+        image (PhotoImage): Stored reference to the ANN architecture image to prevent garbage collection.
+    """
 
     def __init__(self, parent, controller):
         super().__init__(parent)

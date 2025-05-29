@@ -45,11 +45,13 @@ class NeuroGoalkeeperApp(tk.Tk):
         # --- Frame manager ---
         self.frames = {}  # Store active frames by class name
         self.show_frame(StartWindow)
+
     def show_frame(self, frame_class, *args, **kwargs):
         """
         Displays the given frame by creating it if not already created.
         Reuses it otherwise to allow returning to previous states.
         """
+
         if frame_class not in self.frames:
             frame = frame_class(parent=self.container, controller=self, *args, **kwargs)
             self.frames[frame_class] = frame

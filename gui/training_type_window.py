@@ -19,12 +19,24 @@ from gui.dataset_view_window import DatasetViewWindow
 from ann import neural_network
 
 ##################################################################################################
-#                                   TRAINING TYPE WINDOW CLASS                                   #
-#                                                                                                #
-# Displays training mode options and allows the user to choose how to continue.                  #
+#                                        IMPLEMENTATION                                          #
 ##################################################################################################
 
 class TrainingTypeWindow(tk.Frame):
+    """
+    Selection interface for the goalkeeper training mode.
+
+    This screen provides users with three distinct ANN training options:
+    - General: Uses a complete dataset with 84 evenly distributed shots.
+    - External: Loads shots from a user-provided CSV file.
+    - Custom: Allows interactive shot generation on the goal map.
+
+    Each option is explained with visual and textual descriptions, and buttons
+    are provided to continue to the dataset preview screen or the custom interface.
+
+    Attributes:
+        controller (tk.Tk): Main application controller to switch frames.
+    """
 
     def __init__(self, parent, controller):
         super().__init__(parent)
@@ -73,17 +85,38 @@ class TrainingTypeWindow(tk.Frame):
             self.grid_rowconfigure(i, weight=1)
 
     def load_general(self):
+        """
+        Handler for the "General" training mode.
+
+        Loads the default dataset with 84 predefined shot patterns and opens
+        the dataset preview screen before training.
+        """
+
         messagebox.showinfo("TRAINING", "General training selected.")
         dataset_path = resource_path("datasets/dataset_general.csv")
         dataset = neural_network.load_csv(dataset_path)
         self.controller.show_frame(DatasetViewWindow, dataset=dataset, dataset_path=dataset_path)
 
     def load_external(self):
+        """
+        Handler for the "External" training mode.
+
+        Loads a dataset from 'dataset_external.csv' provided by the user and
+        opens the dataset preview screen before training.
+        """
+
         messagebox.showinfo("TRAINING", "External training selected.")
         dataset_path = resource_path("datasets/dataset_external.csv")
         dataset = neural_network.load_csv(dataset_path)
         self.controller.show_frame(DatasetViewWindow, dataset=dataset, dataset_path=dataset_path)
 
     def load_custom(self):
+        """
+        Handler for the "Custom" training mode.
+
+        Opens the custom training interface where the user can interactively
+        select goal areas and generate training patterns manually.
+        """
+
         messagebox.showinfo("TRAINING", "Custom training selected.")
         self.controller.show_frame(CustomTrainingWindow)

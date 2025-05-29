@@ -1,5 +1,5 @@
 ##################################################################################################
-#                                    STATS WINDOW                                                #
+#                                          STATS WINDOW                                          #
 #                                                                                                #
 # Displays the final training statistics from the ANN training process.                          #
 # Uses a scrollable listbox to show accuracy, success rate, etc.                                 #
@@ -13,13 +13,22 @@ import tkinter as tk
 from tkinter import Label, Listbox, Scrollbar, Button, RIGHT, Y, BOTH, LEFT, END
 
 ##################################################################################################
-#                                   STATS WINDOW CLASS                                           #
-#                                                                                                #
-# Displays all lines classified as final statistics, collected from the training output.         #
-# Automatically skips headers and separators.                                                    #
+#                                        IMPLEMENTATION                                          #
 ##################################################################################################
 
 class StatsWindow(tk.Frame):
+    """
+    Final statistics display screen for the ANN training process.
+
+    This window shows summary metrics derived from the neural network's training session.
+    It uses a styled scrollable listbox to present values such as accuracy, success rate,
+    or classification quality. It is designed for readability and direct visual comparison.
+
+    Attributes:
+        controller (tk.Tk): Main application controller used for frame switching.
+        stats (list[str]): List of statistic lines extracted from the training output.
+        predictions (list[str]): Full list of ANN predictions, optionally reused for context.
+    """
 
     def __init__(self, parent, controller, stats=None, predictions=None, **kwargs):
         super().__init__(parent)

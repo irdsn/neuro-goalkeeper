@@ -26,12 +26,30 @@ import os
 from datetime import datetime
 
 ##################################################################################################
-#                                    RESULTS WINDOW CLASS                                        #
-#                                                                                                #
-# Handles display of ANN training outputs and derived analytics (shots, stats, errors).          #
+#                                        IMPLEMENTATION                                          #
 ##################################################################################################
 
 class ResultsWindow(tk.Frame):
+    """
+    GUI window that displays the complete output of the ANN training process.
+
+    Features:
+    - Runs the ANN training process with user-defined parameters.
+    - Displays scrollable training logs.
+    - Provides access to predictions, error term graph, shot map, and statistics.
+    - Automatically exports a structured Markdown report summarizing the session.
+
+    Attributes:
+        controller (tk.Tk): The application controller that manages screen transitions.
+        n_hidden (int): Number of hidden neurons.
+        l_rate (float): Learning rate for training.
+        n_epoch (int): Number of training epochs.
+        dataset_input (list): List of training patterns.
+        dataset_path (str): File path of the training dataset used.
+        predictions (list): List of prediction output lines.
+        error_lines (list): List of error term evolution lines.
+        stats (list): Final evaluation statistics extracted from the training output.
+    """
 
     def __init__(self, parent, controller, **kwargs):
         super().__init__(parent)
@@ -142,6 +160,15 @@ class ResultsWindow(tk.Frame):
             self.controller.show_frame(StatsWindow, stats=self.stats)
 
     def show_shot_map(self):
+        """
+        Generates a matplotlib visualization of shot coordinates over the goal image.
+
+        Shots are colored based on prediction correctness:
+        - Blue: Correct prediction
+        - Red: Wrong prediction
+
+        Coordinates are rescaled to real dimensions (meters).
+        """
 
         # Plot of launch coordinates
         dataset_for_plot = copy.deepcopy(self.dataset_input)
@@ -180,6 +207,19 @@ class ResultsWindow(tk.Frame):
         plt.show()
 
     def export_markdown_report(self, output_txt_path):
+        """
+        Creates a structured Markdown training report based on ANN output.
+
+        The report includes:
+        - Configuration details
+        - Explanation of training modes
+        - Raw output from the ANN
+        - Final evaluation metrics (if available)
+
+        Args:
+            output_txt_path (str): Path to the text file with ANN training results.
+        """
+
         timestamp_slug = datetime.now().strftime('%Y%m%d_%H%M%S')
         output_md_path = f"outputs/training_report_{timestamp_slug}.md"
 

@@ -14,13 +14,21 @@ from tkinter import Label, Listbox, Scrollbar, Button, RIGHT, Y, BOTH, LEFT, END
 import matplotlib.pyplot as plt
 
 ##################################################################################################
-#                                 ERROR TERM WINDOW CLASS                                        #
-#                                                                                                #
-# Handles parsing and display of the ANN's error term over training epochs.                      #
-# Offers both textual data and a graph using matplotlib.                                         #
+#                                        IMPLEMENTATION                                          #
 ##################################################################################################
 
 class ErrorTermWindow(tk.Frame):
+    """
+    A GUI window to visualize the error term evolution during ANN training.
+
+    This class renders a list of error values per training epoch and provides
+    a button to display a line graph via matplotlib. It supports returning to a
+    previous window via the `return_to` reference.
+
+    Attributes:
+        controller (tk.Tk): Reference to the main app controller for navigation.
+        return_to (str): Name of the previous frame to return to.
+    """
 
     def __init__(self, parent, controller, error_lines, **kwargs):
         super().__init__(parent)
@@ -75,6 +83,13 @@ class ErrorTermWindow(tk.Frame):
 
         # Plotting
         def show_graph():
+            """
+            Display a matplotlib plot of the error term values over training epochs.
+
+            Uses the extracted error values and corresponding epoch numbers to generate
+            a line graph. The plot is shown in a new window.
+            """
+
             fig = plt.figure("Error Term Evolution", figsize=(9, 7))
             plt.plot(epochs, error_values, marker='o')
             plt.xlabel("Epoch", fontsize=12)

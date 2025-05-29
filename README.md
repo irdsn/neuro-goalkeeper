@@ -1,8 +1,8 @@
 # NeuroGoalkeeper: ANN-Based Training Simulator for Handball Goalkeepers
 
 ![Python](https://img.shields.io/badge/Python-3.11-blue.svg)
-![Task](https://img.shields.io/badge/Task-Binary_Classification-orange)
 ![Model](https://img.shields.io/badge/Model-Feedforward_ANN-blueviolet)
+![Task](https://img.shields.io/badge/Task-Binary_Classification-orange)
 ![Last Updated](https://img.shields.io/badge/Last%20Updated-May%202025-brightgreen)
 
 Simulated training environment for handball goalkeepers powered by a custom-built artificial neural network and an interactive Tkinter GUI. Originally developed as a bachelor thesis and later refined into a standalone application.

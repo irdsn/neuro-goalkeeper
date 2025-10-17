@@ -12,7 +12,7 @@ Simulated training environment for handball goalkeepers powered by a custom-buil
 ## Author
 
 Íñigo Rodríguez Sánchez  
-Data & Artificial Intelligence Engineer
+AI & Data Engineer
 
 ---
 
@@ -100,7 +100,7 @@ These changes improve usability, maintainability, and adaptability for future en
 ## Project Structure
 
 ```bash
-NeuroGoalkeeper/
+neuro-goalkeeper/
 ├── ann/                                         # ANN logic and training process (forward/backward propagation, training loop)
 │   └── neural_network.py
 │
@@ -166,8 +166,8 @@ NeuroGoalkeeper/
 
 1. Clone this repository:
 ```bash
-git clone https://github.com/YOUR_USERNAME/NeuroGoalkeeper.git
-cd NeuroGoalkeeper
+git clone https://github.com/YOUR_USERNAME/neuro-goalkeeper.git
+cd neuro-goalkeeper
 ```
 
 2. (Optional but recommended) Create and activate a virtual environment:

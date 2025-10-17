@@ -135,7 +135,7 @@ neuro-goalkeeper/
 ├── utils/                                       # Utility modules used throughout the app
 │   └── paths.py                                 # Path resolution utilities
 │
-├── app.py                                       # Main application launcher
+├── neuro_goalkeeper.py                                       # Main application launcher
 ├── requirements.txt                             # Python dependencies
 ├── .gitignore                                   # Ignored files and folders
 └── README.md                                    # Project documentation
@@ -147,7 +147,7 @@ neuro-goalkeeper/
 
 | File                                | Description                                                                                                    |
 |-------------------------------------|----------------------------------------------------------------------------------------------------------------|
-| `app.py`                            | Main launcher of the application; handles window transitions and fullscreen behavior                           |
+| `neuro_goalkeeper.py`               | Main launcher of the application; handles window transitions and fullscreen behavior                           |
 | `ann/neural_network.py`             | Full implementation of the artificial neural network and training logic                                        |
 | `gui/custom_training_window.py`     | Interactive shot generation interface using goal layout                                                        |
 | `gui/dataset_view_window.py`        | Displays selected dataset before training                                                                      |
@@ -188,7 +188,7 @@ pip install -r requirements.txt
 Once installed, you can launch the application with:
 
 ```bash
-python app.py
+python neuro_goalkeeper.py
 ```
 
 This will open a graphical interface where you can select a training mode, configure the ANN parameters, and view training results and visualizations.

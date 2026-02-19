@@ -7,15 +7,6 @@
 
 Simulated training environment for handball goalkeepers powered by a custom-built artificial neural network and an interactive Tkinter GUI. Originally developed as a bachelor thesis and later refined into a standalone application.
 
----
-
-## Author
-
-Íñigo Rodríguez Sánchez  
-AI & Data Engineer
-
----
-
 ## Table of Contents
 
 - [Introduction](#introduction)
@@ -29,8 +20,6 @@ AI & Data Engineer
 - [Important Notes](#important-notes)
 - [Final Words](#final-words)
 
----
-
 ## Introduction
 
 NeuroGoalkeeper is a modular training simulator for handball goalkeepers based on a custom-built artificial neural network (ANN). The system simulates goalkeeper responses to various shot patterns and learns from those interactions over multiple epochs.
@@ -40,10 +29,7 @@ Developed originally as an academic project, the application integrates data pre
 The project serves both as a pedagogical tool for neural network understanding and as a practical simulation platform for sports-oriented machine learning experimentation.
 
 > This project was initially developed as a Bachelor Thesis at Universidad Politécnica de Madrid (UPM).  
-> 📄 Official repository: [https://oa.upm.es/62850/](https://oa.upm.es/62850/)
-
-
----
+> Official repository: [https://oa.upm.es/62850/](https://oa.upm.es/62850/)
 
 ## Key Features
 
@@ -58,9 +44,6 @@ The project serves both as a pedagogical tool for neural network understanding a
 - Markdown training reports generated alongside raw `.txt` logs
 - Timestamped training reports to preserve session history and avoid overwrites
 - Dynamic GUI with improved layout and fullscreen support
-
----
-
 
 ## Interface Overview
 
@@ -77,7 +60,6 @@ Below are sample views of the application's interface and output visualizations:
 | Example Shot Map Output                               |
 |-------------------------------------------------------|
 | <img src="images/markdown_shot_map.png" width="900"/> |
----
 
 ## Refactor Overview
 
@@ -94,8 +76,6 @@ This project is an extended and cleaned-up version of the original Bachelor's Th
 | UI Design            | Fixed window sizes, limited responsiveness    | Fullscreen support, consistent layout across screens  |
 
 These changes improve usability, maintainability, and adaptability for future enhancements.
-
----
 
 ## Project Structure
 
@@ -141,8 +121,6 @@ neuro-goalkeeper/
 └── README.md                                    # Project documentation
 ```
 
----
-
 ## Script Overview
 
 | File                                | Description                                                                                                    |
@@ -159,8 +137,6 @@ neuro-goalkeeper/
 | `gui/stats_window.py`               | Final performance metrics                                                                                      |
 | `gui/training_type_window.py`       | Mode selection window (general, external, custom)                                                              |
 | `utils/paths.py`                    | Provides project-root-relative file resolution to reliably load datasets and images from any script or module. |
-
----
 
 ## Installation
 
@@ -181,8 +157,6 @@ source .venv/bin/activate  # On Windows: .venv\Scripts\activate
 pip install -r requirements.txt
 ```
 
----
-
 ## Usage
 
 Once installed, you can launch the application with:
@@ -199,8 +173,6 @@ All outputs will be saved under the /outputs/ directory, including:
 - training_report.md: Markdown version of the training summary
 - Plots and prediction visualizations
 
----
-
 ## Important Notes
 
 - The application is designed for educational and experimental purposes; its ANN is not optimized for production-grade performance.
@@ -209,9 +181,8 @@ All outputs will be saved under the /outputs/ directory, including:
 - The `Custom Training` mode requires at least two simulated shots before continuing.
 - If run outside the project root, some paths (e.g. to `/images` or `/datasets`) may fail unless properly adjusted.
 
----
 
-## Final Words
+## Contributing & Contact
 
 This project was originally developed as part of a *Bachelor Thesis in Telecommunications Engineering* at Universidad Politécnica de Madrid, and later evolved into a standalone ANN-based simulator.
 
@@ -220,3 +191,8 @@ Whether you're a student exploring neural networks, a developer interested in sp
 Feel free to explore the code, test the different training modes, or adapt the project to new use cases.
 
 **If you’ve found this project useful or inspiring — feel free to build on it, break it, or just drop a star ⭐.**
+
+- Bugs / feature requests: please open an **Issue**.
+- Direct contact: [inigo.rodsan@gmail.com](mailto:inigo.rodsan@gmail.com)
+
+Developed & maintained by [Íñigo Rodríguez](https://github.com/irdsn).

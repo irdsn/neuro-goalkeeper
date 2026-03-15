@@ -13,6 +13,7 @@ neuro-goalkeeper/
 │
 ├── docs/
 │   ├── images/                                  # Images used only for project documentation
+│   │   ├── NeuroGoalkeeper_logo.png             # Project logo used in documentation
 │   │   ├── start_window.png
 │   │   ├── training_type_window.png
 │   │   └── shot_map.png

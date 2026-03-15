@@ -14,8 +14,6 @@ Simulated training environment for handball goalkeepers powered by a custom-buil
 - [Key Features](#key-features)
 - [Interface Overview](#interface-overview)
 - [Refactor Overview](#refactor-overview)
-- [Project Structure](#project-structure)
-- [Script Overview](#script-overview)
 - [Installation](#installation)
 - [Usage](#usage)
 - [Important Notes](#important-notes)
